@@ -11,5 +11,4 @@ class TestKey < Minitest::Test
     key = Key.new
     assert_equal key.num.length, 5
   end
-
 end
