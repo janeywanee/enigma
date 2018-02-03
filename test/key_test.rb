@@ -1,9 +1,7 @@
 require "./test/test_helper"
-
 require "./lib/key"
 
-class Test_Key < Minitest::Test
-
+class TestKey < Minitest::Test
   def test_key_exists
     key = Key.new
     assert_instance_of Key, key
@@ -13,7 +11,4 @@ class Test_Key < Minitest::Test
     key = Key.new
     assert_equal key.num, 12345
   end
-
-
-
 end
