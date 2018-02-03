@@ -1,5 +1,4 @@
 require "./test/test_helper"
-require "pry"
 require "./lib/key"
 
 class TestKey < Minitest::Test
@@ -13,14 +12,11 @@ class TestKey < Minitest::Test
     assert_equal key.num.length, 5
   end
 
-  def test_first_to_digits_of_the_key_rotation_A
+  def test_rotations_length_is_two
     key = Key.new
-    
-    assert_equal key.rotation_A.length, 2
-    assert_equal key.rotation_B.length, 2
-    assert_equal key.rotation_C.length, 2
-    assert_equal key.rotation_D.length, 2
+    assert_equal key.rotation_a.length, 2
+    assert_equal key.rotation_b.length, 2
+    assert_equal key.rotation_c.length, 2
+    assert_equal key.rotation_d.length, 2
   end
-
-
 end
