@@ -3,6 +3,6 @@ class Key
   attr_reader :num
 
   def initialize
-    @num = 12345
+    @num = 5.times.map { rand(1..9) }.join
   end
 end
