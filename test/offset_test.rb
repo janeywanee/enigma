@@ -9,6 +9,11 @@ class TestOffset < Minitest::Test
     assert_instance_of Date, offset.today
   end
 
+  def test_create_key_in_offset
+    offset = Offset.new
+    assert_instance_of Key, offset.key
+  end
+
   def test_convert_date_into_ddmmyy
     offset = Offset.new
     assert_equal offset.convert_date, "040218"
@@ -26,4 +31,9 @@ class TestOffset < Minitest::Test
     assert_equal offset.c_offset, offset.last_four[-2]
     assert_equal offset.d_offset, offset.last_four[-1]
   end
+
+  # def test_offset_totals
+  #   offset = Offset.new
+  #   assert_equal offset.a_total, offset.
+  # end
 end

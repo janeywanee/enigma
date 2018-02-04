@@ -2,12 +2,13 @@
 require "date"
 
 class Offset
-  attr_reader :today
+  attr_reader :today,
+              :key
 
 
   def initialize
     @today = Date.today
-    @a_offset = ""
+    @key = Key.new
   end
 
   def convert_date
