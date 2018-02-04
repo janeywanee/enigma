@@ -37,8 +37,18 @@ class Offset
   end
 
   def a_total
-    result = a_offset +
-       @key.rotation_a
+    a_offset.to_i + @key.rotation_a.to_i
+  end
 
+  def b_total
+    b_offset.to_i + @key.rotation_b.to_i
+  end
+
+  def c_total
+    c_offset.to_i + @key.rotation_c.to_i
+  end
+
+  def d_total
+    d_offset.to_i + @key.rotation_d.to_i
   end
 end
