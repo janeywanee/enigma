@@ -11,6 +11,7 @@ class TestOffset < Minitest::Test
 
   def test_convert_date_into_ddmmyy
     offset = Offset.new
-    assert_equal "030218", offset.convert_date
+    binding.pry
+    assert_equal offset.convert_date, "040218"
   end
 end

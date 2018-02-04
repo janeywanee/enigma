@@ -9,5 +9,6 @@ class Offset
   end
 
   def convert_date
+    @today.strftime("%d%m%y")
   end
 end
