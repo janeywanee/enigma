@@ -32,8 +32,9 @@ class TestOffset < Minitest::Test
     assert_equal offset.d_offset, offset.last_four[-1]
   end
 
-  # def test_offset_totals
-  #   offset = Offset.new
-  #   assert_equal offset.a_total, offset.
-  # end
+  def test_offset_totals
+    offset = Offset.new
+    # binding.pry
+    assert_equal offset.a_total, 8
+  end
 end

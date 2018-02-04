@@ -1,6 +1,6 @@
 # creates offset object for use in encryption
 require "date"
-
+require "pry"
 class Offset
   attr_reader :today,
               :key
@@ -21,18 +21,24 @@ class Offset
   end
 
   def a_offset
-    @a_offset = last_four[-4]
+    last_four[-4]
   end
 
   def b_offset
-    @b_offset = last_four[-3]
+    last_four[-3]
   end
 
   def c_offset
-    @c_offset = last_four[-2]
+    last_four[-2]
   end
 
   def d_offset
-    @d_offset = last_four[-1]
+    last_four[-1]
+  end
+
+  def a_total
+    result = a_offset +
+       @key.rotation_a
+
   end
 end
