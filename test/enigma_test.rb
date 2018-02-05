@@ -11,7 +11,8 @@ class TestEnigma < Minitest::Test
     enigma = Enigma.new
     message = "this is so secret"
     enigma.split(message)
-    # binding.pry
     assert_equal enigma.split(message).count, 4
   end
+
+  #test our offset calc can come in
 end
