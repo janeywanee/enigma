@@ -1,6 +1,5 @@
 require "./test/test_helper"
 require "./lib/offset"
-require "pry"
 
 
 class TestOffset < Minitest::Test
@@ -34,7 +33,9 @@ class TestOffset < Minitest::Test
 
   def test_offset_totals
     offset = Offset.new
-    # binding.pry
-    assert_equal offset.a_total, 8
+    assert_equal offset.a_total, (offset.a_offset.to_i + offset.key.rotation_a.to_i)
+    assert_equal offset.b_total, (offset.b_offset.to_i + offset.key.rotation_b.to_i)
+    assert_equal offset.c_total, (offset.c_offset.to_i + offset.key.rotation_c.to_i)
+    assert_equal offset.d_total, (offset.d_offset.to_i + offset.key.rotation_d.to_i)
   end
 end
