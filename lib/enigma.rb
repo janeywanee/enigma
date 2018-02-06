@@ -6,6 +6,7 @@ class Enigma
   def initialize
     @offset = Offset.new
     @alphabet = ("a".."z").to_a
+    # @zipped_alphabet
   end
 
   def rotate_a(letter)
@@ -65,4 +66,31 @@ class Enigma
     message.join
   end
 
+  def decrypt_letter_a(letter)
+    position = @alphabet.index(letter)
+    rotated_alphabet = @alphabet.rotate(-1 * @offset.a_total)
+    zipped_alphabet = @alphabet.zip(rotated_alphabet)
+    zipped_alphabet[position][1]
+  end
+
+  def decrypt_letter_b(letter)
+    position = @alphabet.index(letter)
+    rotated_alphabet = @alphabet.rotate(-1 * @offset.b_total)
+    zipped_alphabet = @alphabet.zip(rotated_alphabet)
+    zipped_alphabet[position][1]
+  end
+
+  def decrypt_letter_c(letter)
+    position = @alphabet.index(letter)
+    rotated_alphabet = @alphabet.rotate(-1 * @offset.c_total)
+    zipped_alphabet = @alphabet.zip(rotated_alphabet)
+    zipped_alphabet[position][1]
+  end
+
+  def decrypt_letter_d(letter)
+    position = @alphabet.index(letter)
+    rotated_alphabet = @alphabet.rotate(-1 * @offset.d_total)
+    zipped_alphabet = @alphabet.zip(rotated_alphabet)
+    zipped_alphabet[position][1]
+  end
 end
