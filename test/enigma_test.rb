@@ -7,6 +7,11 @@ class TestEnigma < Minitest::Test
     assert_instance_of Enigma, enigma
   end
 
+  def test_offset_calc
+    enigma = Enigma.new
+    assert_instance_of Offset, enigma.offset
+  end
+
   def test_string_separate_into_4_chars
     enigma = Enigma.new
     message = "this is so secret"
@@ -42,7 +47,6 @@ class TestEnigma < Minitest::Test
     enigma = Enigma.new
     first_chunk = "this"
     refute enigma.encrypt_chunk(first_chunk),"this"
+    #this test will always pass... ask instructor?
   end
-
-  #test our offset calc can come in
 end
