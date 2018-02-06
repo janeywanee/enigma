@@ -3,15 +3,25 @@ class Enigma
   attr_reader :split
 
   def initialize
+    @offset = Offset.new
   end
 
-  def split(message)
+  def separate(message)
     @message = message
-    @message.delete(' ').scan(/.{1,4}/)
+    @message = @message.delete(' ').scan(/.{1,4}/)
   end
-  #iterate each array element
-  #then "each within each" EXCEPT create another method for
-  #the next each AKA move a,b,c, or d
 
-  #zip??
+  def rotate_a(letter)
+    alphabet = ("a".."z").to_a
+    position = alphabet.index(letter)
+    rotated_alphabet = alphabet.rotate(@offset.a_total)
+    zipped_alphabet = alphabet.zip(rotated_alphabet)
+    zipped_alphabet[position][1]
+
+  end
+
+
+
+
+
 end

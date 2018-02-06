@@ -7,12 +7,21 @@ class TestEnigma < Minitest::Test
     assert_instance_of Enigma, enigma
   end
 
-  def test_string_splits_into_4_chars
+  def test_string_separate_into_4_chars
     enigma = Enigma.new
     message = "this is so secret"
-    enigma.split(message)
-    assert_equal enigma.split(message).count, 4
+    enigma.separate(message)
+    assert_equal enigma.separate(message).count, 4
   end
+
+  def test_first_character_rotates_by_a
+    enigma = Enigma.new
+    first_character = "t"
+    # assert_equal enigma.rotate_a(first_character), "v"
+    assert ("a".."z").include?(enigma.rotate_a(first_character))
+
+  end
+
 
   #test our offset calc can come in
 end
