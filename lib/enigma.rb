@@ -1,52 +1,68 @@
 # creates enigma object for encryption and decryption
 class Enigma
-  attr_reader :split
+  attr_reader :split,
+              :offset
 
   def initialize
     @offset = Offset.new
-  end
-
-  def separate(message)
-    @message = message
-    @message = @message.delete(' ').scan(/.{1,4}/)
+    @alphabet = ("a".."z").to_a
   end
 
   def rotate_a(letter)
-    alphabet = ("a".."z").to_a
-    position = alphabet.index(letter)
-    rotated_alphabet = alphabet.rotate(@offset.a_total)
-    zipped_alphabet = alphabet.zip(rotated_alphabet)
+    position = @alphabet.index(letter)
+    rotated_alphabet = @alphabet.rotate(@offset.a_total)
+    zipped_alphabet = @alphabet.zip(rotated_alphabet)
     zipped_alphabet[position][1]
   end
 
   def rotate_b(letter)
-    alphabet = ("a".."z").to_a
-    position = alphabet.index(letter)
-    rotated_alphabet = alphabet.rotate(@offset.b_total)
-    zipped_alphabet = alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(@offset.b_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def rotate_c(letter)
-    alphabet = ("a".."z").to_a
-    position = alphabet.index(letter)
-    rotated_alphabet = alphabet.rotate(@offset.c_total)
-    zipped_alphabet = alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(@offset.c_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def rotate_d(letter)
-    alphabet = ("a".."z").to_a
-    position = alphabet.index(letter)
-    rotated_alphabet = alphabet.rotate(@offset.d_total)
-    zipped_alphabet = alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(@offset.d_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
-  def encrypt_chunk(first_chunk)
-
+  def encrypt_chunk(chunk)
+    new_array = chunk.scan(/./)
+    encrypt_a = rotate_a(new_array[0])
+    encrypt_b = rotate_b(new_array[1])
+    encrypt_c = rotate_c(new_array[2])
+    encrypt_d = rotate_d(new_array[3])
+    "#{encrypt_a}#{encrypt_b}#{encrypt_c}#{encrypt_d}"
   end
 
-
+  def encrypt(my_message, key = nil, date = nil)
+    message = my_message.delete(' ').scan(/.{1,4}/)
+    message = message.map do |chunk|
+      encrypt_chunk(chunk)
+    end
+    message.join
+  end
 
 end
