@@ -8,11 +8,6 @@ class Enigma
     @alphabet = ("a".."z").to_a
   end
 
-  def separate(message)
-    @message = message
-    @message = @message.delete(' ').scan(/.{1,4}/)
-  end
-
   def rotate_a(letter)
     position = @alphabet.index(letter)
     rotated_alphabet = @alphabet.rotate(@offset.a_total)
@@ -21,32 +16,52 @@ class Enigma
   end
 
   def rotate_b(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(@offset.b_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(@offset.b_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def rotate_c(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(@offset.c_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(@offset.c_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def rotate_d(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(@offset.d_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(@offset.d_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def encrypt_chunk(chunk)
     new_array = chunk.scan(/./)
     encrypt_a = rotate_a(new_array[0])
-    encrypt_b = rotate_a(new_array[1])
-    encrypt_c = rotate_a(new_array[2])
-    encrypt_d = rotate_a(new_array[3])
+    encrypt_b = rotate_b(new_array[1])
+    encrypt_c = rotate_c(new_array[2])
+    encrypt_d = rotate_d(new_array[3])
     "#{encrypt_a}#{encrypt_b}#{encrypt_c}#{encrypt_d}"
+  end
+
+  def encrypt(my_message)
+    @message = my_message.delete(' ').scan(/.{1,4}/)
+    @message = @message.map do |chunk|
+      encrypt_chunk(chunk)
+    end
+    @message.join
   end
 end
