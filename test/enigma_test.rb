@@ -1,5 +1,6 @@
 require "./test/test_helper"
 require "./lib/enigma"
+require "pry"
 
 class TestEnigma < Minitest::Test
   def test_it_exists
@@ -12,12 +13,12 @@ class TestEnigma < Minitest::Test
     assert_instance_of Offset, enigma.offset
   end
 
-  # def test_string_separate_into_4_chars
-  #   enigma = Enigma.new
-  #   message = "this is so secret"
-  #   enigma.separate(message)
-  #   assert_equal enigma.separate(message).count, 4
-  # end
+  def test_string_separate_into_4_chars
+    enigma = Enigma.new
+    message = "this is so secret"
+    enigma.separate(message)
+    assert_equal enigma.separate(message).count, 4
+  end
 
   def test_first_character_rotates_by_a
     enigma = Enigma.new
@@ -28,6 +29,7 @@ class TestEnigma < Minitest::Test
   def test_second_character_rotates_by_a
     enigma = Enigma.new
     second_character = "h"
+binding.pry
     assert ("a".."z").include?(enigma.rotate_a(second_character))
   end
 

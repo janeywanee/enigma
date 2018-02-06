@@ -57,11 +57,12 @@ class Enigma
     "#{encrypt_a}#{encrypt_b}#{encrypt_c}#{encrypt_d}"
   end
 
-  def encrypt(my_message)
-    @message = my_message.delete(' ').scan(/.{1,4}/)
-    @message = @message.map do |chunk|
+  def encrypt(my_message, key = nil, date = nil)
+    message = my_message.delete(' ').scan(/.{1,4}/)
+    message = message.map do |chunk|
       encrypt_chunk(chunk)
     end
-    @message.join
+    message.join
   end
+
 end
