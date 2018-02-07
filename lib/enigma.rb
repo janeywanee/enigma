@@ -81,16 +81,41 @@ class Enigma
   end
 
   def decrypt_letter_c(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(-1 * @offset.c_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(-1 * @offset.c_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def decrypt_letter_d(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(-1 * @offset.d_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(-1 * @offset.d_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
+  end
+
+  def decrypt_chunk(chunk)
+    new_array = chunk.scan(/./)
+    decrypt_a = decrypt_letter_a(new_array[0])
+    decrypt_b = decrypt_letter_b(new_array[1])
+    decrypt_c = decrypt_letter_c(new_array[2])
+    decrypt_d = decrypt_letter_d(new_array[3])
+    "#{decrypt_a}#{decrypt_b}#{decrypt_c}#{decrypt_d}"
+  end
+
+  def decrypt(my_message, key = nil, date = nil)
+    message = my_message.delete(' ').scan(/.{1,4}/)
+    message = message.map do |chunk|
+      decrypt_chunk(chunk)
+    end
+    message.join
   end
 end

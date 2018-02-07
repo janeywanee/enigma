@@ -42,7 +42,6 @@ class TestEnigma < Minitest::Test
     enigma = Enigma.new
     first_chunk = "this"
     refute enigma.encrypt_chunk(first_chunk) == "this"
-    #this test will always pass... ask instructor?
   end
 
   def test_encrypt_chunks_less_than_four_chars
@@ -69,4 +68,24 @@ class TestEnigma < Minitest::Test
     assert_equal enigma.decrypt_letter_c(enigma.rotate_c("i")), "i"
     assert_equal enigma.decrypt_letter_d(enigma.rotate_d("s")), "s"
   end
+
+  def test_can_decrypt_chunks
+    enigma = Enigma.new
+    this = "this"
+    assert_equal enigma.decrypt_chunk(enigma.encrypt_chunk(this)), "this"
+  end
+
+  def test_decrypt_returns_message
+    enigma = Enigma.new
+    encryption= enigma.encrypt("this is so secret")
+    assert_equal encryption.length, "thisissosecret".length
+  end
+
+
+
+#   e.crack(output, Date.today)
+# => "this is so secret ..end.."
+# > e.crack(output) # Date is optional, use today's date
+# => "this is so secret ..end.."
+
 end
