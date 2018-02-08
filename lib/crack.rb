@@ -1,4 +1,6 @@
-require "./enigma"
+require_relative "./enigma"
+require_relative "./offset"
+require_relative "./key"
 require "date"
 
 encryption_file = File.open(ARGV[0], "r")
@@ -11,4 +13,4 @@ cracked_file = File.open(ARGV[1], "w")
 cracked_file.write(enigma.crack(encryption, ARGV[2]))
 cracked_file.close
 
-puts "Created 'crack.txt' with the cracked #{enigma.offset.key} and #{Date.today}"
+puts "Created 'cracked.txt' with the cracked #{enigma.offset.key} and #{Date.today}"
