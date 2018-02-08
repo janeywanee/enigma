@@ -5,8 +5,7 @@ class Enigma
 
   def initialize
     @offset = Offset.new
-    @alphabet = ("a".."z").to_a
-    # @zipped_alphabet
+    @alphabet = ("a".."z").to_a.push(".")
   end
 
   def rotate_a(letter)
@@ -74,10 +73,14 @@ class Enigma
   end
 
   def decrypt_letter_b(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(-1 * @offset.b_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(-1 * @offset.b_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def decrypt_letter_c(letter)
@@ -115,7 +118,15 @@ class Enigma
     message = my_message.delete(' ').scan(/.{1,4}/)
     message = message.map do |chunk|
       decrypt_chunk(chunk)
+    end.join
+  end
+
+  def crack(output, date = Date.today)
+    last_seven = output[-7..-1]
+    unless last_seven == "..end.."
+      decrypt(output, key = 10000)
+      key += 1
     end
-    message.join
+    decrypt(output, key)
   end
 end
