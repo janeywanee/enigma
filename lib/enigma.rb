@@ -58,7 +58,7 @@ class Enigma
   end
 
   def encrypt(my_message, key = nil, date = nil)
-    message = my_message.delete(' ').scan(/.{1,4}/)
+    message = my_message.delete(" ").scan(/.{1,4}/)
     message = message.map do |chunk|
       encrypt_chunk(chunk)
     end
@@ -115,7 +115,7 @@ class Enigma
   end
 
   def decrypt(my_message, key = nil, date = nil)
-    message = my_message.delete(' ').scan(/.{1,4}/)
+    message = my_message.delete(" ").scan(/.{1,4}/)
     message = message.map do |chunk|
       decrypt_chunk(chunk)
     end.join
