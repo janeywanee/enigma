@@ -3,7 +3,7 @@ class Key
   attr_reader :num
 
   def initialize
-    @num = 5.times.map { rand(1..9) }.join
+    @num = 5.times.map { rand(0..9) }.join
   end
 
   def rotation_a

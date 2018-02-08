@@ -52,8 +52,8 @@ class TestEnigma < Minitest::Test
 
   def test_encrypt_returns_scrambled_message
     enigma = Enigma.new
-    encryption = enigma.encrypt("this is so secret")
-    assert_equal encryption.length, "thisissosecret".length
+    encryption = enigma.encrypt("this is so secret.")
+    assert_equal encryption.length, "thisissosecret.".length
   end
 
   def test_decrypt_for_first_character
@@ -77,15 +77,15 @@ class TestEnigma < Minitest::Test
 
   def test_decrypt_returns_message
     enigma = Enigma.new
-    encryption= enigma.encrypt("this is so secret")
-    assert_equal encryption.length, "thisissosecret".length
+    encryption= enigma.encrypt("this is so secret.")
+    assert_equal encryption.length, "thisissosecret.".length
   end
 
-
-
-#   e.crack(output, Date.today)
-# => "this is so secret ..end.."
-# > e.crack(output) # Date is optional, use today's date
-# => "this is so secret ..end.."
+  def test_crack_will_work_with_generated_key
+    enigma = Enigma.new
+    encryption = enigma.encrypt("this is so secret ..end..")
+    result = enigma.crack(encryption)
+    assert_equal result, "thisissosecret..end.."
+  end
 
 end
