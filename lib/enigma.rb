@@ -1,7 +1,12 @@
 # creates enigma object for encryption and decryption
+require_relative "./offset"
+require_relative "./key"
+require "pry"
+
 class Enigma
-  attr_reader :split,
-              :offset
+  attr_reader :offset,
+              :key,
+              :num
 
   def initialize
     @offset = Offset.new
@@ -66,10 +71,14 @@ class Enigma
   end
 
   def decrypt_letter_a(letter)
-    position = @alphabet.index(letter)
-    rotated_alphabet = @alphabet.rotate(-1 * @offset.a_total)
-    zipped_alphabet = @alphabet.zip(rotated_alphabet)
-    zipped_alphabet[position][1]
+    if letter.nil?
+      ""
+    else
+      position = @alphabet.index(letter)
+      rotated_alphabet = @alphabet.rotate(-1 * @offset.a_total)
+      zipped_alphabet = @alphabet.zip(rotated_alphabet)
+      zipped_alphabet[position][1]
+    end
   end
 
   def decrypt_letter_b(letter)
@@ -116,7 +125,7 @@ class Enigma
 
   def decrypt(my_message, key = nil, date = nil)
     message = my_message.delete(" ").scan(/.{1,4}/)
-    message = message.map do |chunk|
+    message.map do |chunk|
       decrypt_chunk(chunk)
     end.join
   end

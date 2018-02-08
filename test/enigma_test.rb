@@ -77,8 +77,10 @@ class TestEnigma < Minitest::Test
 
   def test_decrypt_returns_message
     enigma = Enigma.new
+    key = enigma.offset.key
     encryption = enigma.encrypt("this is so secret.")
-    assert_equal encryption.length, "thisissosecret.".length
+    decryption = enigma.decrypt(encryption)
+    assert_equal decryption, "thisissosecret."
   end
 
   def test_crack_will_work_with_generated_key
