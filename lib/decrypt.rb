@@ -1,11 +1,10 @@
 require_relative "./enigma"
-require "pry"
+
 encryption_file = File.open(ARGV[0], "r")
 encryption = encryption_file.read.delete("\n")
 encryption_file.close
 
 enigma = Enigma.new
-binding.pry
 
 decryption_file = File.open(ARGV[1], "w")
 decryption_file.write(enigma.decrypt(encryption, ARGV[2], Date.today))
