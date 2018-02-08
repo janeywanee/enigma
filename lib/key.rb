@@ -1,4 +1,4 @@
-# creates key object for use in offset
+ # creates key object for use in offset
 class Key
   attr_reader :num
 

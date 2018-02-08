@@ -124,7 +124,7 @@ class Enigma
   def crack(output, date = Date.today)
     last_seven = output[-7..-1]
     unless last_seven == "..end.."
-      decrypt(output, key = 10000)
+      decrypt(output, key = 10_000)
       key += 1
     end
     decrypt(output, key)

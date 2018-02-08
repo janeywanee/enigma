@@ -77,7 +77,7 @@ class TestEnigma < Minitest::Test
 
   def test_decrypt_returns_message
     enigma = Enigma.new
-    encryption= enigma.encrypt("this is so secret.")
+    encryption = enigma.encrypt("this is so secret.")
     assert_equal encryption.length, "thisissosecret.".length
   end
 
